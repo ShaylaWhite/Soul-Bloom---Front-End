@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // Add this import
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,9 +19,11 @@ import { GardenComponent } from './garden/garden.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule, // Add FormsModule here
     HttpClientModule,
     AppRoutingModule
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
