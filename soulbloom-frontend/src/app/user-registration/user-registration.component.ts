@@ -1,5 +1,4 @@
-// user-registration.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -8,21 +7,18 @@ import { ApiService } from '../api.service';
   styleUrls: ['./user-registration.component.css']
 })
 export class UserRegistrationComponent {
+  user: any = {}; // Define a user object
+
   constructor(private apiService: ApiService) {}
 
   registerUser() {
-    const userData = {
-      username: 'johndoe',
-      emailAddress: 'jonh@aol.com',
-      password: 'password',
-    };
-
+    const userData = this.user; // Use the user object to send data
     this.apiService.registerUser(userData).subscribe(
-      (response) => {
+      (response: any) => {
         // Handle successful registration
         console.log('Registration successful:', response);
       },
-      (error) => {
+      (error: any) => {
         // Handle registration errors
         console.error('Registration error:', error);
       }
