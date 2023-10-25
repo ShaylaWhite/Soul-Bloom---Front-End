@@ -21,7 +21,6 @@ import { GardenComponent } from './garden/garden.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
