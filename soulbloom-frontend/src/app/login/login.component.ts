@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router'; // Import the Router
 
 @Component({
   selector: 'app-login',
@@ -12,24 +13,25 @@ export class LoginComponent {
 
   constructor(private apiService: ApiService, private router: Router) {}
 
-loginUser() {
-  const userData = this.user; // Use the user object to send data
-  this.apiService.loginUser(userData).subscribe(
-    (response: any) => {
-      // Handle successful login
-      console.log('Login successful:', response);
+  loginUser() {
+    const userData = this.user; // Use the user object to send data
+    this.apiService.loginUser(userData).subscribe(
+      (response: any) => {
+        // Handle successful login
+        console.log('Login successful:', response);
 
-      // Redirect to user profile upon successful login
-      this.router.navigate(['/user-profile']);
-    },
-    (error: any) => {
-      // Handle login errors
-      console.error('Login error:', error);
+        // Redirect to user profile upon successful login
+        this.router.navigate(['/user-profile']);
+      },
+      (error: any) => {
+        // Handle login errors
+        console.error('Login error:', error);
 
-      if (error.status === 401) {
-        // Display an error message to the user
-        this.loginError = 'Authentication failed. Please check your credentials.';
+        if (error.status === 401) {
+          // Display an error message to the user
+          this.loginError = 'Authentication failed. Please check your credentials.';
+        }
       }
-    }
-  );
+    );
+  }
 }
