@@ -9,6 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SecureComponent } from './secure/secure.component';
 import { RouterModule } from '@angular/router';
+import { FlowerComponent } from './flower/flower.component';
+import { GardenComponent } from './garden/garden.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +19,9 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     UserProfileComponent,
     SecureComponent,
+    GardenComponent,
+    FlowerComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
   private baseUrl = 'http://localhost:9092/api/users'; // Define the base URL
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {} // Inject the Router service
 
   // URL for user registration from backend
   private registrationUrl = 'http://localhost:9092/auth/users/register';
@@ -44,6 +46,15 @@ registerUser(userData: any): Observable<any> {
 loginUser(userData: any): Observable<any> {
   return this.http.post(this.loginUrl, userData);
 }
+
+// URL for getting a specific flower
+private getFlowerUrl = `${this.baseUrl}/flowers`;
+
+// URL for updating a flower
+private updateFlowerUrl = `${this.baseUrl}/flowers`;
+
+// URL for deleting a flower
+private deleteFlowerUrl = `${this.baseUrl}/flowers`;
   createGarden(gardenData: any): Observable<any> {
     return this.http.post(this.createGardenUrl, gardenData);
   }
@@ -74,5 +85,20 @@ loginUser(userData: any): Observable<any> {
     const url = `${this.baseUrl}/validate-token`;
     return this.http.post(url, { token });
   }
+  getFlower(flowerId: number): Observable<any> {
+    const url = `${this.getFlowerUrl}/${flowerId}`;
+    return this.http.get(url);
+  }
   
+  updateFlower(flowerData: any): Observable<any> {
+    return this.http.put(this.updateFlowerUrl, flowerData);
+  }
+  
+  deleteFlower(flowerId: number): Observable<any> {
+    const url = `${this.deleteFlowerUrl}/${flowerId}`;
+    return this.http.delete(url);
+  }
+  navigateToUserProfile(userId: number) {
+    this.router.navigate(['/user-profile', userId]);
+}
 }

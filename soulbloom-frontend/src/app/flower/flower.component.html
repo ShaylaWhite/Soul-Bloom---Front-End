@@ -1,0 +1,26 @@
+<!-- flower.component.html -->
+<form (ngSubmit)="updateFlower()" #flowerForm="ngForm">
+    <div class="form-group">
+      <label for="selfCareType">Self Care Type:</label>
+      <input type="text" id="selfCareType" name="selfCareType" [(ngModel)]="flower.selfCareType" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="flower.description" required></textarea>
+    </div>
+  
+    <div class="form-group">
+        <label for="flowerImage">Select Flower Image:</label>
+        <select id="flowerImage" name="flowerImage" [(ngModel)]="flower.image" required>
+          <option value="" disabled>Select an image</option>
+          <option *ngFor="let image of flowerImages" [value]="image.url">
+            <img [src]="image.url" alt="Flower Image">
+          </option>
+        </select>
+      </div>
+      
+  
+    <button type="submit">Save Flower</button>
+  </form>
+  
