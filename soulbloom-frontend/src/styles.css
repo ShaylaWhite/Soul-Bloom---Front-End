@@ -1,3 +1,121 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+/* Add your CSS styles here */
+
+
+body {
+    font-family: 'Abhaya Libre', sans-serif;
+    background-image: url('assets/images/bg.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+header {
+    height: 6rem;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.container {
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+a {
+    font-family: 'Abhaya Libre', sans-serif;
+    text-transform: uppercase;
+    color: #333;
+    letter-spacing: 0.05rem;
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #555;
+}
+
+button {
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+button span {
+    width: 2rem;
+    height: 0.25rem;
+    background-color: #333;
+    margin-bottom: 0.5rem;
+    border-radius: 0.125rem;
+}
+
+.main-content {
+    font-family: 'Abhaya Libre', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.headline {
+    font-family: 'Abhaya Libre', sans-serif;
+    color: #008000;
+    font-size: 6rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.subheadline {
+    font-family: 'Abhaya Libre', sans-serif;
+    text-transform: uppercase;
+    color: #008000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.25rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.description {
+    font-family: 'Alegreya Sans', sans-serif;
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
+    max-width: 30rem;
+}
+
+.read-more-button {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    background-color: #008000;
+    box-shadow: 0 0.5rem 1rem rgba(0, 128, 0, 0.2);
+    transition: background-color 0.3s;
+    margin-top: 2rem;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.read-more-button:hover {
+    background-color: #006600;
+}
+
+.image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

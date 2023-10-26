@@ -1,51 +1,33 @@
 <!-- Registration Form -->
-<form class="w-full max-w-sm mx-auto">
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-        Username
-      </label>
-      <input
-        [(ngModel)]="user.username"
-        name="username"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="username"
-        type="text"
-        placeholder="Username"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-        Email
-      </label>
-      <input
-        [(ngModel)]="user.emailAddress"
-        name="email"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="email"
-        type="email"  
-        placeholder="Email"
-      />
-    </div>
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-        Password
-      </label>
-      <input
-        [(ngModel)]="user.password"
-        name="password"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="password"
-        type="password"
-        placeholder="Password"
-      />
-    </div>
-    <div class="flex items-center justify-between">
-      <button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        type="submit"
-      >
-        Register
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<div class="min-h-screen flex justify-center items-center">
+  <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12">
+    <h1 class="text-2xl font-semibold">Sign Up</h1>
+    <form>
+      <label for="username" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Username</label>
+      <input id="username" type="text" name="username" placeholder="johndoe" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+      <label for="email" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">E-mail Address</label>
+      <input id="email" type="email" name="email" placeholder="johndoe@example.com" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+      <label for="password" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Password</label>
+      <input id="password" type="password" name="password" placeholder="********" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+      <label for="password-confirm" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Confirm Password</label>
+      <input id="password-confirm" type="password" name="password-confirm" placeholder="********" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+      <button type="submit" class="w-full mt-6 py-3 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+        Sign up
       </button>
-    </div>
-  </form>
-  
+    </form>
+    <p class="mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">
+      Already registered? <a href="/login" class="text-black hover:underline">Login</a>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
+
