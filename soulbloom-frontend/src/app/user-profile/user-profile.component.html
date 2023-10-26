@@ -1,18 +1,15 @@
 <div *ngIf="userProfile">
+    <h2>Welcome to Soul Bloom, {{ userProfile.username }}</h2>
+    <p>It's another beautiful day to feed your soul.</p>
+    
     <h2>User Profile</h2>
     <p>Name: {{ userProfile.name }}</p>
     <p>Email: {{ userProfile.email }}</p>
-  <div *ngIf="showGarden">
-    <app-garden></app-garden>
+    
+    <div *ngIf="showGarden">
+      <app-garden></app-garden>
+    </div>
+    
+    <app-flower></app-flower>
   </div>
-  <app-flower></app-flower>
-  <a [routerLink]="['/user-profile', userId]">User Profile</a>
-
-</div>
-<!-- Modify the user selection in your component's HTML template -->
-<select [(ngModel)]="selectedUserId">
-    <option value="1">User 1</option>
-    <option value="2">User 2</option>
-    <!-- Add more options for other users as needed -->
-  </select>
-  <button (click)="navigateToUserProfile(selectedUserId)">View User's Profile</button>
+  

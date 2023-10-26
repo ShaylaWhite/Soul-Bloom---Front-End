@@ -1,34 +1,37 @@
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/src/styles.css" rel="stylesheet">
+    <title>Soul Bloom</title>
+</head>
 <body>
     <header>
         <div class="container">
             <nav>
                 <a href="#">Home</a>
-                <a routerLink="/user-registration" >User Registration</a>
-                <a routerLink="/login" >Login</a>
-               
+                <a routerLink="/user-registration">User Registration</a>
+                <a routerLink="/login">Login</a>
             </nav>
         </div>
     </header>
     <div class="main-content">
         <div class="container">
-        
-
             <div class="headline">Soul Bloom.</div>
-            <div class="subheadline">A place for You and Your Soul </div>
-            
+            <div class="subheadline">Nourish Your Soul Garden</div>
         </div>
-        <p class="description">Welcome to Soul Bloom! </p>
-
-       
+    </div>
+    <div class="container2 flex items-center justify-center  bg-white  w-full py-10 text-white">
+        <p class="subheadline"> Soul Bloom: We're just god for the soul!</p>
     </div>
     <div class="container">
-       
         <router-outlet></router-outlet>
     </div>
+   
+  
 </body>
-
 
 
 
