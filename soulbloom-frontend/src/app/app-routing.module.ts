@@ -3,24 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
-// Import CanActivate and Router from '@angular/router'
-import { CanActivate, Router } from '@angular/router';
-
-export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
-
-  canActivate(): boolean {
-    // Implement your authentication logic here.
-    // For demonstration purposes, always return true (allow access).
-    return true;
-  }
-}
+import { AuthGuard } from './auth.guard';
+import { SecureComponent } from './secure/secure.component';
 
 const routes: Routes = [
   { path: 'user-registration', component: UserRegistrationComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] }
+  { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },
+  { path: '**', redirectTo: '/landing' },
+  {
+    path: 'secure-page',
+    component: SecureComponent,
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
@@ -28,3 +24,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+
+export { routes }; // Export the 'routes' variable
+

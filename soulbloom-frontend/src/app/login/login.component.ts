@@ -19,14 +19,14 @@ export class LoginComponent {
       (response: any) => {
         // Handle successful login
         console.log('Login successful:', response);
-
+  
         // Redirect to user profile upon successful login
         this.router.navigate(['/user-profile']);
       },
       (error: any) => {
         // Handle login errors
         console.error('Login error:', error);
-
+  
         if (error.status === 401) {
           // Display an error message to the user
           this.loginError = 'Authentication failed. Please check your credentials.';
