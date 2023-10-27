@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Flower } from './models/flower.model'; // Adjust the path based on your project structure
 
 @Injectable()
 export class AuthService {

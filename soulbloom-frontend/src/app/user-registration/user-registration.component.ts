@@ -45,10 +45,14 @@ export class UserRegistrationComponent {
     if (response && response.id) {
       // User registration successful, now login the user
       this.loginUser(this.userData, response.id);
+      
+      // Navigate to the user profile component
+      this.router.navigate([`/user-profile/${response.id}`]); // Assuming the route is set up correctly
     } else {
       console.error('Invalid user ID received.');
     }
   }
+  
 
   private loginUser(userData: any, userId: number) {
     // Send a login request to the backend using the provided user data
@@ -61,9 +65,7 @@ export class UserRegistrationComponent {
           localStorage.setItem('jwtToken', response.jwt);
 
           // Redirect to the user profile page
-          this.router.navigate([`/user-profile/${userId}`]);
-        } else {
-          console.error('Invalid JWT token received.');
+          this.router.navigate([`/user-profile/${userId}`, userId]);          console.error('Invalid JWT token received.');
         }
       },
       (error: any) => {

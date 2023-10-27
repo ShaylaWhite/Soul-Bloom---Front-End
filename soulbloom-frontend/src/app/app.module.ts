@@ -32,8 +32,7 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     HttpClientModule,
     AppRoutingModule,
-    CommonModule,
-
+    CommonModule, // Don't forget to include CommonModule if you need it
   ],
   providers: [
     AuthService, // Add AuthService here

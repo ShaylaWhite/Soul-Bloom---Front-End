@@ -5,19 +5,14 @@ import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth.guard';
 import { SecureComponent } from './secure/secure.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  // { path: '', component: AppComponent },
   { path: 'user-registration', component: UserRegistrationComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'user-profile/:userId', component: UserProfileComponent },
+  { path: 'user-profile/:userId', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'secure-page', component: SecureComponent, canActivate: [AuthGuard] },
-  { path: 'profile/:id', component: UserProfileComponent },
-
-  // { path: '**', redirectTo: 'user-registration' } // Redirect to 'user-registration' only for unknown routes
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

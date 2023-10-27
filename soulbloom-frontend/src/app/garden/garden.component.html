@@ -1,8 +1,47 @@
-<div class="garden-container">
-    <h2>Garden: {{ gardenName }}</h2>
-    
-    <button (click)="waterGarden()">Water Garden</button>
-  </div>
-  
+<div class="garden-container text-center">
+    <p class="text-lg mb-4">
+        Welcome to the Soul Bloom Garden! This is a place for you to nurture and grow beautiful flowers. Get started by creating your first garden or manage your existing gardens. You can also perform a daily check-in to water your garden.
+    </p>
+    <form (ngSubmit)="createGarden()" #gardenForm="ngForm">
+        <div class="flex space-x-4 justify-center">
+            <button
+                class="bg-green-500 text-white py-2 px-3 rounded-lg shadow-lg"
+                type="submit"
+                *ngIf="!gardenId"
+            >
+                Create Your First Garden
+            </button>
+        </div>
+    </form>
 
-  <h1> hey </h1>
+    <!-- Display Flowers in Carousel or List -->
+    <div class="flowers-carousel">
+        <!-- You can use a carousel component here -->
+        <!-- OR -->
+        <div *ngFor="let flower of flowersInGarden">
+            <div class="flower-card">
+                <img [src]="flower.image" alt="Flower Image">
+                <p><strong>Self Care Type:</strong> {{ flower.selfCareType }}</p>
+                <p><strong>Description:</strong> {{ flower.description }}</p>
+                <!-- Add more flower details as needed -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex space-x-4 justify-center">
+        <button
+            class="bg-green-500 text-white py-2 px-3 rounded-lg shadow-lg"
+            *ngIf="gardenId"
+            (click)="loadGardenData()"
+        >
+            View Your Garden
+        </button>
+    </div>
+    
+    <button
+        class="bg-green-500 text-white py-2 px-3 rounded-lg shadow-lg"
+        (click)="waterGarden()"
+    >
+        Daily Check-In: Water Your Garden
+    </button>
+</div>
