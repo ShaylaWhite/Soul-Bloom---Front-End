@@ -14,25 +14,27 @@ export class LoginComponent {
   constructor(private apiService: ApiService, private router: Router) {}
 
   loginUser() {
-    const userData = this.user; // Use the user object to send data
+    const userData = this.user;
     this.apiService.loginUser(userData).subscribe(
-      (response: any) => {
-        // Handle successful login
-        console.log('Login successful:', response);
+        (response: any) => {
+            // Handle successful login
+            console.log('Login successful:', response);
 
-        // Redirect to user profile upon successful login
-        this.router.navigate(['/user-profile']);
-      },
-      (error: any) => {
-        // Handle login errors
-        console.error('Login error:', error);
+            // Store the JWT token securely (e.g., in localStorage)
+            localStorage.setItem('jwt', response.jwt);
 
-        if (error.status === 401) {
-          // Display an error message to the user
-          this.loginError = 'Authentication failed. Please check your credentials.';
+            // Redirect to user profile upon successful login
+            this.router.navigate(['/user-profile']);
+        },
+        (error: any) => {
+            // Handle login errors
+            console.error('Login error:', error);
+
+            if (error.status === 401) {
+                // Display an error message to the user
+                this.loginError = 'Authentication failed. Please check your credentials.';
+            }
         }
-      }
     );
-  }
 }
-
+}

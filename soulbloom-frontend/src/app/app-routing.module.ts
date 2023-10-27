@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth.guard';
 import { SecureComponent } from './secure/secure.component';
+
 const routes: Routes = [
   // { path: '', component: AppComponent },
   { path: 'user-registration', component: UserRegistrationComponent },

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 import { ApiService } from '../api.service';
+
 
 @Component({
   selector: 'app-flower',
@@ -7,6 +8,9 @@ import { ApiService } from '../api.service';
   styleUrls: ['./flower.component.css']
 })
 export class FlowerComponent implements OnInit {
+  @Input() showFlower: boolean | undefined;
+  @Input() flowerId: number | undefined; // Declare the @Input properties
+
   flower: any = {
     selfCareType: '',
     description: '',

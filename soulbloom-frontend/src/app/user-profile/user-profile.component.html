@@ -1,15 +1,17 @@
-<div *ngIf="userProfile">
-    <h2>Welcome to Soul Bloom, {{ userProfile.username }}</h2>
-    <p>It's another beautiful day to feed your soul.</p>
-    
-    <h2>User Profile</h2>
-    <p>Name: {{ userProfile.name }}</p>
-    <p>Email: {{ userProfile.email }}</p>
-    
-    <div *ngIf="showGarden">
-      <app-garden></app-garden>
+<div *ngIf="userProfile" class="min-h-screen flex justify-center items-center">
+    <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold">User Profile</h1>
+        <p class="mt-4">Name: {{ userProfile.name }}</p>
+        <p>Email: {{ userProfile.email }}</p>
+        <!-- Add more user profile details as needed -->
+
+        <!-- Render the Garden Component -->
+        <app-garden *ngIf="showGarden"></app-garden>
+        <!-- Render the Flower Component -->
+        <app-flower *ngIf="showFlower" [flowerId]="flowerId"></app-flower>
     </div>
-    
-    <app-flower></app-flower>
-  </div>
-  
+</div>
+
+<div *ngIf="!userProfile" class="min-h-screen flex justify-center items-center">
+    <p class="text-lg">Loading user profile...</p>
+</div>

@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-registration.component.css']
 })
 
-
 export class UserRegistrationComponent {
   user: any = {
     username: '',
@@ -17,25 +16,24 @@ export class UserRegistrationComponent {
   };
   registrationError: string | undefined;
   userData: any; // Declare userData as a class property
+  userId: number; // Declare userId here
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router) {
+    this.userId = 0; // or an appropriate default value
+  }
 
   registerUser() {
-    console.log('Register user function called.'); // Add this line
-    this.userData = this.user; // Capture the user data
+    console.log('Register user function called.');
+    this.userData = this.user;
 
     if (!this.user.password) {
-      // Password is empty, show an error or prevent form submission
       this.registrationError = 'Password cannot be empty';
     } else {
-      // Password is not empty, proceed with registration
       this.apiService.registerUser(this.userData).subscribe(
         (response: any) => {
-          // Handle successful registration
           this.handleRegistrationSuccess(response);
         },
         (error: any) => {
-          // Handle registration errors
           this.handleRegistrationError(error);
         }
       );
@@ -45,22 +43,48 @@ export class UserRegistrationComponent {
   private handleRegistrationSuccess(response: any) {
     console.log('Registration successful:', response);
     if (response && response.id) {
-      const userId = response.id; // Use the actual user ID from the response
-      this.router.navigate(['/user-profile', userId]);
+      // User registration successful, now login the user
+      this.loginUser(this.userData, response.id);
     } else {
       console.error('Invalid user ID received.');
     }
   }
-  
+
+  private loginUser(userData: any, userId: number) {
+    // Send a login request to the backend using the provided user data
+    this.apiService.loginUser(userData).subscribe(
+      (response: any) => {
+        // Handle successful login
+        console.log('Login successful:', response);
+        if (response && response.jwt) {
+          // Store the JWT token in localStorage
+          localStorage.setItem('jwtToken', response.jwt);
+
+          // Redirect to the user profile page
+          this.router.navigate([`/user-profile/${userId}`]);
+        } else {
+          console.error('Invalid JWT token received.');
+        }
+      },
+      (error: any) => {
+        // Handle login errors
+        console.error('Login error:', error);
+
+        if (error.status === 401) {
+          this.registrationError = 'Authentication failed. Please check your credentials.';
+        }
+      }
+    );
+  }
 
   private handleRegistrationError(error: any) {
     console.error('Registration error:', error);
-  
+
     if (error.status === 401) {
       this.registrationError = 'Registration failed. Please check your data.';
     } else {
       // Show an alert to the user
-      alert('Registration failed. Please check your data ');
+      alert('Registration failed. Please check your data');
     }
   }
 }

@@ -11,6 +11,10 @@ import { SecureComponent } from './secure/secure.component';
 import { RouterModule } from '@angular/router';
 import { FlowerComponent } from './flower/flower.component';
 import { GardenComponent } from './garden/garden.component';
+import { AuthInterceptor } from './auth.interceptor'; // Correct the import path
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,6 @@ import { GardenComponent } from './garden/garden.component';
     SecureComponent,
     GardenComponent,
     FlowerComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -29,9 +32,17 @@ import { GardenComponent } from './garden/garden.component';
     RouterModule,
     HttpClientModule,
     AppRoutingModule,
+    CommonModule,
+
   ],
-  providers: [],
+  providers: [
+    AuthService, // Add AuthService here
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-

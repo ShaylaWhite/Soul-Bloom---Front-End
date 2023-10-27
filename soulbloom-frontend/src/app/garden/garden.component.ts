@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -7,31 +7,37 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./garden.component.css']
 })
 export class GardenComponent implements OnInit {
+  @Input() gardenId: number | null = null;
   gardenName: string = '';
-  gardenId: number = 1; // Replace with the appropriate garden ID
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    // Load garden data when the component initializes
-    this.loadGardenData();
+    if (this.gardenId !== null) {
+      // Load garden data when the component initializes if gardenId is not null
+      this.loadGardenData();
+    }
   }
 
   loadGardenData() {
-    this.http
-      .get('http://localhost:9092/api/users/gardens/' + this.gardenId)
-      .subscribe((gardenData: any) => {
-        // Handle garden data
-        this.gardenName = gardenData.name;
-      });
+    if (this.gardenId) {
+      this.http
+        .get('http://localhost:9092/api/users/gardens/' + this.gardenId)
+        .subscribe((gardenData: any) => {
+          // Handle garden data
+          this.gardenName = gardenData.name;
+        });
+    }
   }
 
   waterGarden() {
-    this.http
-      .put('http://localhost:9092/api/users/water-garden/' + this.gardenId, {})
-      .subscribe((response: any) => {
-        // Handle the response or perform additional actions
-        console.log('Garden watered:', response);
-      });
+    if (this.gardenId) {
+      this.http
+        .put('http://localhost:9092/api/users/water-garden/' + this.gardenId, {})
+        .subscribe((response: any) => {
+          // Handle the response or perform additional actions
+          console.log('Garden watered:', response);
+        });
+    }
   }
 }
