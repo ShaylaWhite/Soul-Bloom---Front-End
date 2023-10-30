@@ -3,7 +3,6 @@
 
 Welcome to **Soul Bloom**, a unique self-care application that allows you to cultivate a virtual garden of well-being through daily reflections, self-care activities, and mindful choices.
 
-![Soul Bloom Banner](./path-to-your-banner-image.png)
 
 ## Table of Contents
 
@@ -35,7 +34,8 @@ This README provides a comprehensive guide to help you set up and use the fronte
 - Water your garden with self-care activities and reflections.
 - View your garden's progress and past flowers.
 
-## Getting Started
+## Link to BackEnd 
+- https://github.com/ShaylaWhite/Soul-Bloom---Back-End/tree/main
 
 ### User Stories:
 
@@ -45,28 +45,65 @@ This README provides a comprehensive guide to help you set up and use the fronte
 - Add flowers to the garden as a form of self-care.
 - Provide a self-care type and description for each flower planted.
 - Delete a specific flower from the garden.
+Certainly, here are all the Soul Bloom REST API endpoints organized into a table:
 
-### Entity-Relationship Diagram (ERD):
 
-**User (Table)**
+##  REST API endpoints so that users are aware of the functionality it provides.
+| Request Type | URL                                      | Functionality                            | Access   |
+|--------------|------------------------------------------|------------------------------------------|----------|
+| POST         | /auth/users/login/                       | User login                               | Public   |
+| GET          | /api/categories/                         | Get all categories                        | Private  |
+| POST         | /auth/users/register/                    | User registration                         | Public   |
+| GET          | /api/users/{userId}                     | Get user profile by user ID               | Private  |
+| PUT          | /api/users/{userId}                     | Update user profile by user ID            | Private  |
+| DELETE       | /api/users/{userId}                     | Delete user by user ID                    | Private  |
+| GET          | /api/users/gardens/{gardenId}           | Get user's garden by garden ID            | Private  |
+| PUT          | /api/users/water-garden/{gardenId}      | Water user's garden by garden ID         | Private  |
+| POST         | /api/users/create-garden                | Create user's garden                      | Private  |
+| POST         | /api/users/add-flower                   | Add a flower to the user's garden         | Private  |
+| DELETE       | /api/users/flowers/{flowerId}           | Delete a flower from the user's garden by flower ID | Private  |
+| PUT          | /api/users/flowers/{flowerId}           | Update a flower by flower ID              | Private  |
 
-- UserID (Primary Key)
+These are all the endpoints for Soul Bloom, categorized by functionality and access level.
+
+## Project Planning
+
+Managed this project using GitHub Projects, where you can find detailed information about my project breakdown, deliverables, timelines, and progress.
+
+### Challenges and Ongoing Development
+During the development of the Soul Bloom application, I successfully achieved significant milestones, such as user registration, login functionality, and the ability for users to plant flowers in their gardens. However, there are still exciting challenges and features on the horizon:
+
+## Update and Delete Flower Functionality
+i am still actively working on implementing update and delete functionalities for flowers in the user's garden. These features will empower users to edit or remove specific flowers as they nurture their virtual gardens. Our team is dedicated to providing a seamless and user-friendly experience for managing their blooming oasis.
+
+As I continue to develop Soul Bloom, MY mission is to ensure that users have complete control over their gardens, allowing them to personalize their self-care experience to the fullest.
+
+Stay tuned for these upcoming enhancements as we strive to create a more vibrant and enriching experience in the world of Soul Bloom! 🌼🌿🌻
+
+If you have any suggestions, feedback, or need assistance, please feel free to reach out. We value your input and are committed to making Soul Bloom the best it can be. Thank you for being a part of our journey.
+
+## Entity-Relationship Diagram (ERD)
+
+### User (Table)
+
+- **UserID** (Primary Key)
 - Username
 - Password (hashed)
 - GardenID (Foreign Key, links to the Garden table)
 
-**Garden (Table)**
+### Garden (Table)
 
-- GardenID (Primary Key)
+- **GardenID** (Primary Key)
 - UserID (Foreign Key, links to the User table)
 - LastWatered (Timestamp)
 
-**Flower (Table)**
+### Flower (Table)
 
-- FlowerID (Primary Key)
+- **FlowerID** (Primary Key)
 - GardenID (Foreign Key, links to the Garden table)
 - SelfCareType
 - Description
+
 
 #### Prerequisites
 
@@ -116,5 +153,3 @@ Thank you for choosing Soul Bloom to embark on your well-being journey. We hope 
 
 For support and inquiries, contact us at [your-email@example.com](mailto:your-email@example.com).
 ```
-
-Please replace `"./path-to-your-banner-image.png"` with the actual path to your banner image. Additionally, ensure that the links for prerequisites and other URLs are correct.
