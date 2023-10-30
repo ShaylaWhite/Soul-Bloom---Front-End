@@ -68,8 +68,19 @@ These are all the endpoints for Soul Bloom, categorized by functionality and acc
 
 ## Project Planning
 
-Managed this project using GitHub Projects, where you can find detailed information about our project breakdown, deliverables, timelines, and progress.
+Managed this project using GitHub Projects, where you can find detailed information about my project breakdown, deliverables, timelines, and progress.
 
+### Challenges and Ongoing Development
+During the development of the Soul Bloom application, I successfully achieved significant milestones, such as user registration, login functionality, and the ability for users to plant flowers in their gardens. However, there are still exciting challenges and features on the horizon:
+
+## Update and Delete Flower Functionality
+i am still actively working on implementing update and delete functionalities for flowers in the user's garden. These features will empower users to edit or remove specific flowers as they nurture their virtual gardens. Our team is dedicated to providing a seamless and user-friendly experience for managing their blooming oasis.
+
+As I continue to develop Soul Bloom, MY mission is to ensure that users have complete control over their gardens, allowing them to personalize their self-care experience to the fullest.
+
+Stay tuned for these upcoming enhancements as we strive to create a more vibrant and enriching experience in the world of Soul Bloom! 🌼🌿🌻
+
+If you have any suggestions, feedback, or need assistance, please feel free to reach out. We value your input and are committed to making Soul Bloom the best it can be. Thank you for being a part of our journey.
 
 ## Entity-Relationship Diagram (ERD)
 
