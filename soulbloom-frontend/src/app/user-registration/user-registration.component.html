@@ -10,17 +10,19 @@
     <h1 class="text-2xl font-semibold">Sign Up</h1>
     <form (ngSubmit)="registerUser()">
       <label for="username" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Username</label>
-      <input id="username" type="text" name="username" placeholder="johndoe" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" required [(ngModel)]="user.username" />
-      <label for="email" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Email Address</label>
-      <input id="email" type="email" name="emailAddress" placeholder="johndoe@example.com" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" [(ngModel)]="user.emailAddress" required />
-      
+      <input id="username" type="text" name="username" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" required [(ngModel)]="user.username" />
+    
+      <label for="emailAddress" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Email Address</label>
+      <input id="emailAddress" type="email" name="emailAddress" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" [(ngModel)]="user.emailAddress" />
+    
       <label for="password" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Password</label>
-      <input id="password" type="password" name="password" placeholder="********" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" required [(ngModel)]="user.password" />
-
+      <input id="password" type="password" name="password" class="block w-full p-3 text-gray-700 bg-gray-200 focus:outline-none focus:bg-gray-300 focus:shadow-inner" required [(ngModel)]="user.password" />
+    
       <button type="submit" class="w-full mt-6 py-3 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
         Sign up
       </button>
     </form>
+    
     <p class="mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">
       Already registered? <a href="/login" class="text-black hover:underline">Login</a>
     </p>

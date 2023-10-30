@@ -15,6 +15,8 @@ import { AuthInterceptor } from './auth.interceptor'; // Correct the import path
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     RouterModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     CommonModule, // Don't forget to include CommonModule if you need it
   ],

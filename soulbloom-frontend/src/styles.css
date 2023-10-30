@@ -119,3 +119,54 @@ button span {
     align-items: center;
     justify-content: center;
 }
+.small-italic-text {
+    font-size: 14px; /* Adjust the font size as needed */
+    font-style: italic;
+  }
+/* Adjust the styling of the flower card and container */
+.flower-card {
+    width: 300px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.flower-card img {
+    max-width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 0;
+}
+
+/* Center the flower cards in the carousel */
+.flower-carousel {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Style the select box and text inputs */
+.form-group label {
+    display: block;
+    font-size: 1.25rem;
+}
+
+/* Adjust button styles for a more appealing look */
+button {
+    cursor: pointer;
+    background-color: #006837; /* Change this color as needed */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #ffdb58; /* Change this color as needed */
+}
+
+  

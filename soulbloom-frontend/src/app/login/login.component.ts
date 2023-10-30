@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Router } from '@angular/router'; // Import the Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,33 +8,27 @@ import { Router } from '@angular/router'; // Import the Router
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  user: any = {}; // Define a user object
-  loginError: string | null = null; // Declare the loginError property
+  userData: any = {}; // Adjust the property name to userData
+  loginError: string | null = null;
 
   constructor(private apiService: ApiService, private router: Router) {}
 
   loginUser() {
-    const userData = this.user;
-    this.apiService.loginUser(userData).subscribe(
-        (response: any) => {
-            // Handle successful login
-            console.log('Login successful:', response);
+    this.apiService.loginUser(this.userData).subscribe(
+      (response: any) => {
+        // Handle successful login
+        console.log('Login successful:', response);
+        // Redirect to user profile upon successful login
+        this.router.navigate(['/user-profile']);
+      },
+      (error: any) => {
+        // Handle login errors
+        console.error('Login error:', error);
 
-            // Store the JWT token securely (e.g., in localStorage)
-            localStorage.setItem('jwt', response.jwt);
-
-            // Redirect to user profile upon successful login
-            this.router.navigate(['/user-profile']);
-        },
-        (error: any) => {
-            // Handle login errors
-            console.error('Login error:', error);
-
-            if (error.status === 401) {
-                // Display an error message to the user
-                this.loginError = 'Authentication failed. Please check your credentials.';
-            }
+        if (error.status === 401) {
+          this.loginError = 'Authentication failed. Please check your credentials.';
         }
+      }
     );
-}
+  }
 }

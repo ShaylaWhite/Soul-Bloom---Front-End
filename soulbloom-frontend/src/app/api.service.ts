@@ -1,63 +1,46 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
-
+import { Router } from '@angular/router'; // Import Router
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:9092/api/users'; // Define the base URL
+  private baseUrl = 'http://localhost:9092/api/users';
 
-  constructor(private http: HttpClient, private router: Router) {} // Inject the Router service
 
-  // URL for user registration from backend
   private registrationUrl = 'http://localhost:9092/auth/users/register';
-
-  // URL for user login from backend
   private loginUrl = 'http://localhost:9092/auth/users/login';
 
-  // URL for creating a garden
   private createGardenUrl = `${this.baseUrl}/create-garden`;
-
-  // URL for getting saved gardens
-  private getSavedGardensUrl = `${this.baseUrl}/gardens/1`; // Adjust the URL as needed
-
-  // URL for watering a garden
-  private waterGardenUrl = `${this.baseUrl}/water-garden/1`; // Adjust the URL as needed
-
-  // URL for adding a flower to the garden
+    private getSavedGardensUrl = `${this.baseUrl}/gardens/1`;
+  private waterGardenUrl = `${this.baseUrl}/water-garden/1`;
   private addFlowerUrl = `${this.baseUrl}/add-flower`;
+  private updateGardenUrl = `${this.baseUrl}/gardens/1`;
+  private deleteGardenUrl = `${this.baseUrl}/gardens/1`;
+  private userProfileUrl = `${this.baseUrl}/profile`;
 
-  // URL for updating a garden
-  private updateGardenUrl = `${this.baseUrl}/gardens/1`; // Adjust the URL as needed
-
-  // URL for deleting a garden
-  private deleteGardenUrl = `${this.baseUrl}/gardens/1`; // Adjust the URL as needed
+  constructor(private http: HttpClient, private router: Router) {} // Provide Router in the constructor
 
 
-// Register a new user
-registerUser(userData: any): Observable<any> {
-  return this.http.post(this.registrationUrl, userData);
-}
-
-// Login an existing user
-loginUser(userData: any): Observable<any> {
-  return this.http.post(this.loginUrl, userData);
-}
-
-// URL for getting a specific flower
-private getFlowerUrl = `${this.baseUrl}/flowers`;
-
-// URL for updating a flower
-private updateFlowerUrl = `${this.baseUrl}/flowers`;
-
-// URL for deleting a flower
-private deleteFlowerUrl = `${this.baseUrl}/flowers`;
-  createGarden(gardenData: any): Observable<any> {
-    return this.http.post(this.createGardenUrl, gardenData);
+  getUserProfile(userId: number): Observable<any> {
+    const url = `${this.baseUrl}/${userId}`;
+    return this.http.get(url);
   }
+
+  registerUser(userData: any): Observable<any> {
+    return this.http.post(this.registrationUrl, userData);
+  }
+
+  loginUser(userData: any): Observable<any> {
+    return this.http.post(this.loginUrl, userData);
+  }
+
+  createGarden(gardenName: string): Observable<any> {
+    return this.http.post(this.createGardenUrl, { name: gardenName });
+  }
+
 
   getSavedGardens(): Observable<any> {
     return this.http.get(this.getSavedGardensUrl);
@@ -80,25 +63,33 @@ private deleteFlowerUrl = `${this.baseUrl}/flowers`;
     const url = `${this.deleteGardenUrl}/${gardenId}`;
     return this.http.delete(url);
   }
+
   validateToken(token: string): Observable<any> {
-    // Implement the logic to validate the token
     const url = `${this.baseUrl}/validate-token`;
     return this.http.post(url, { token });
   }
+
+  private getFlowerUrl = `${this.baseUrl}/flowers`;
+
   getFlower(flowerId: number): Observable<any> {
     const url = `${this.getFlowerUrl}/${flowerId}`;
     return this.http.get(url);
   }
-  
+
+  private updateFlowerUrl = `${this.baseUrl}/flowers`;
+
   updateFlower(flowerData: any): Observable<any> {
     return this.http.put(this.updateFlowerUrl, flowerData);
   }
-  
+
+  private deleteFlowerUrl = `${this.baseUrl}/flowers`;
+
   deleteFlower(flowerId: number): Observable<any> {
     const url = `${this.deleteFlowerUrl}/${flowerId}`;
     return this.http.delete(url);
   }
+
   navigateToUserProfile(userId: number) {
     this.router.navigate(['/user-profile', userId]);
-}
+  }
 }

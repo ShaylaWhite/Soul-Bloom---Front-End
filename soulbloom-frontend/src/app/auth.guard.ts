@@ -17,11 +17,30 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this.authService.getToken()) {
-      return true;
-    } else {
-      this.router.navigate(['/login']); // Redirect to login if token is missing
-      return false;
+    const userDataString = localStorage.getItem('userData');
+
+    if (userDataString) {
+      const userData = JSON.parse(userDataString);
+
+      if (userData && (userData.id || userData.username)) {
+        // User is authenticated
+
+        // Check if the route requires a specific userId
+        if (route.routeConfig && route.routeConfig.path === 'user-profile/:userId') {
+          const userId = route.paramMap.get('userId');
+
+          // Check if userId is present
+          if (userId) {
+            return true;
+          }
+        } else {
+          return true;
+        }
+      }
     }
+
+    // User is not authenticated or missing userId, redirect to login or another page
+    this.router.navigate(['/login']);
+    return false;
   }
 }

@@ -15,15 +15,14 @@ export class UserRegistrationComponent {
     password: ''
   };
   registrationError: string | undefined;
-  userData: any; // Declare userData as a class property
-  userId: number; // Declare userId here
+  userData: any;
 
-  constructor(private apiService: ApiService, private router: Router) {
-    this.userId = 0; // or an appropriate default value
-  }
+  constructor(private apiService: ApiService, private router: Router) {}
 
   registerUser() {
-    console.log('Register user function called.');
+    // Log the user data to the console
+    console.log('Register button clicked. User Data:', this.user);
+
     this.userData = this.user;
 
     if (!this.user.password) {
@@ -39,54 +38,44 @@ export class UserRegistrationComponent {
       );
     }
   }
-
+  
   private handleRegistrationSuccess(response: any) {
-    console.log('Registration successful:', response);
+    console.log('Registration successful. Response:', response);
+
     if (response && response.id) {
-      // User registration successful, now login the user
       this.loginUser(this.userData, response.id);
-      
-      // Navigate to the user profile component
-      this.router.navigate([`/user-profile/${response.id}`]); // Assuming the route is set up correctly
     } else {
       console.error('Invalid user ID received.');
     }
   }
   
-
   private loginUser(userData: any, userId: number) {
-    // Send a login request to the backend using the provided user data
+    console.log('Logging in user with ID:', userId);
     this.apiService.loginUser(userData).subscribe(
       (response: any) => {
-        // Handle successful login
-        console.log('Login successful:', response);
         if (response && response.jwt) {
-          // Store the JWT token in localStorage
           localStorage.setItem('jwtToken', response.jwt);
 
-          // Redirect to the user profile page
-          this.router.navigate([`/user-profile/${userId}`, userId]);          console.error('Invalid JWT token received.');
+          // Navigate to the user profile with the user ID
+          this.router.navigate(['/user-profile', userId]); // Navigate to the user's profile with the specified user ID
         }
       },
       (error: any) => {
-        // Handle login errors
-        console.error('Login error:', error);
-
         if (error.status === 401) {
           this.registrationError = 'Authentication failed. Please check your credentials.';
         }
       }
     );
   }
-
+  
   private handleRegistrationError(error: any) {
-    console.error('Registration error:', error);
-
+    console.log('Registration error:', error);
     if (error.status === 401) {
       this.registrationError = 'Registration failed. Please check your data.';
     } else {
-      // Show an alert to the user
       alert('Registration failed. Please check your data');
     }
   }
 }
+
+

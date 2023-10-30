@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { ApiService } from '../api.service';
+import { Flower } from '../models/flower.model';
 
 
 @Component({

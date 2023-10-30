@@ -1,15 +1,42 @@
 <div *ngIf="userProfile" class="min-h-screen flex justify-center items-center">
-
     <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12 rounded-lg shadow-md">
-        
-        <p class="subheadline text-center"> Welcome {{ userProfile.username }}</p>
-
-        <!-- Render the Garden Component -->
-        <app-garden *ngIf="showGarden"></app-garden>
-        
-    </div>
-</div>
-
-<div *ngIf="!userProfile" class="min-h-screen flex justify-center items-center">
-    <p class="text-lg">Loading user profile...</p>
-</div>
+      <h2 class="headline">Welcome, {{ userProfile?.username }}</h2>
+      <br>
+      <br>
+      <br>
+      <!-- Introduction Section -->
+      <div class="text-center mb-8">
+        <h3 class="subheadline">Nourish Your Soul Garden</h3>
+        <span style="color: green;">🌿</span>
+        <p class="small-italic-text">{{ userProfile?.gardenComment }}</p>
+        <p class="small-italic-text">Plant a flower each day to represent your self-care activities and reflections.</p>
+        <p class="small-italic-text">Nurture your garden with daily self-care.</p>
+        <p class="small-italic-text">
+          Visualize your well-being journey through your growing garden.
+        </p>
+      </div>
+  
+      <!-- Create Garden Section -->
+      <div *ngIf="!gardenId">
+        <form (ngSubmit)="createGarden()" #gardenForm="ngForm" class="mb-6">
+          <label for="gardenName" class="subheadline">Garden Name:</label>
+          <input type="text" id="gardenName" name="gardenName" [(ngModel)]="gardenName" required
+            class="w-full p-2 border rounded-lg shadow-md">
+          <button class="bg-green-500 text-white py-2 px-3 rounded-lg shadow-lg" type="submit">
+            {{ creatingGarden ? 'Creating...' : 'Create Garden' }}
+          </button>
+          <!-- Show an error message if needed -->
+          <div *ngIf="gardenNameInvalid" class="text-red-500">Please enter a valid garden name.</div>
+        </form>
+      </div>
+  
+      <!-- Display the GardenComponent inside the user profile container -->
+    
+      <div *ngIf="gardenId">
+        <app-garden [gardenId]="gardenId"></app-garden>
+      </div>
+    
+    <!-- Display the garden comment -->
+    <p>{{ userProfile?.gardenComment }}</p>
+  </div>
+  
